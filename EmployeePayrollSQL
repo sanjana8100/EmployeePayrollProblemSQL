@@ -225,3 +225,24 @@ id	|name    |gender  |salary	|basic_pay	|deductions |taxable_pay |income_tax |ne
 3	|Athul   |Male    |7000000	|3500000	|20000      |350000      |80000      |600000	|production            |2022-09-13	|789         |thane
 4	|Simon   |Male    |6000000	|3000000	|25000      |300000      |75000      |500000	|.net developer        |2022-07-21	|567         |mumbai
 5	|Deepthi |Female  |5000000	|2500000	|30000      |250000      |70000      |400000	|full-stack-developer  |2022-01-12	|789         |thane
+
+
+#UC10: Ability to make Stanley as part of Sales and Marketing Department
+SQL QUERY: insert into employee_payroll(name, gender, salary, basic_pay, deductions, taxable_pay, income_tax, net_pay, department, start, phonenumber, address) values
+           ("Stanley", "Male", "600000.0", "300000.0", "25000.0", "300000.0", "75000", "500000.0", "sales and marketing", "2022-09-11", "321", "mumbai");
+
+           select * from employee_payroll;
+OUTPUT:
+21:26:05	insert into employee_payroll(name, gender, salary, basic_pay, deductions, taxable_pay, income_tax, net_pay, department, start, phonenumber, address) values ("Stanley", "Male", "600000.0", "300000.0", "25000.0", "300000.0", "75000", "500000.0", "sales and marketing", "2022-09-11", "321", "mumbai")	1 row(s) affected	0.109 sec
+
+21:26:14	select * from employee_payroll LIMIT 0, 1000	6 row(s) returned	0.000 sec / 0.000 sec
+id	|name    |gender  |salary	|basic_pay	|deductions |taxable_pay |income_tax |net_pay	|department            |start       |phonenumber |address
+1	|Nithin  |Male    |6000000	|3000000	|25000      |300000      |75000      |500000	|devops                |2022-08-22	|123         |mumbai
+2	|Stanley |Male    |8000000	|4000000	|10000      |400000      |90000      |700000	|full-stack-developer  |2022-09-11	|321         |mumbai
+3	|Athul   |Male    |7000000	|3500000	|20000      |350000      |80000      |600000	|production            |2022-09-13	|789         |thane
+4	|Simon   |Male    |6000000	|3000000	|25000      |300000      |75000      |500000	|.net developer        |2022-07-21	|567         |mumbai
+5	|Deepthi |Female  |5000000	|2500000	|30000      |250000      |70000      |400000	|full-stack-developer  |2022-01-12	|789         |thane
+6	|Stanley |Male    |600000	|300000     |25000      |300000      |75000      |500000	|sales and marketing   |2022-09-11	|321         |mumbai
+
+#UC10: Draw the ER Diagram for Payroll Service DB
+OUTPUT: Refer EmployeePayrollERDiagram.png
