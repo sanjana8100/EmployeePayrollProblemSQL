@@ -258,3 +258,102 @@ OUTPUT:
 22:32:12	create table employee_department( employee_id int not null, department_id int, department varchar(50) )	0 row(s) affected	0.125 sec
 
 For Updated ER Diagram: Refer EmployeePayrollERDiagramUpdated.png
+
+
+#UC12: Ensure all retrieve queries done especially in UC 4, UC 5 and UC 7 are working with new table structure
+SQL QUEUE: //UC4
+           select * from employee_payroll;
+
+           insert into employee_department(employee_id, department_id, department) values
+           ("1", "333", "devops"),
+           ("2", "555", "full-stack-developer"),
+           ("3", "888", "production"),
+           ("4", "777", ".net developer"),
+           ("5", "555", "full-stack-developer"),
+           ("6", "111", "sales and marketing");
+
+           select * from employee_department;
+
+           //UC5
+           select * from employee_payroll
+           where name = "Simon";
+
+           select * from employee_payroll
+           where start between cast('2022-08-01' as date)  and date(now());
+
+           //UC7
+           select sum(salary) from employee_payroll
+           where gender = "Male" group by gender;
+
+           select avg(salary) from employee_payroll
+           where gender = "Male" group by gender;
+
+           select min(salary) from employee_payroll
+           where gender = "Male" group by gender;
+
+           select max(salary) from employee_payroll
+           where gender = "Male" group by gender;
+
+           select count(id) from employee_payroll
+           where gender = "Male" group by gender;
+
+           select count(id) from employee_payroll
+           where gender = "Female" group by gender;
+OUTPUT:
+       //UC4
+22:49:35	select * from employee_payroll LIMIT 0, 1000	6 row(s) returned	0.000 sec / 0.000 sec
+id	|name    |gender  |salary	|basic_pay	|deductions |taxable_pay |income_tax |net_pay	|department            |start       |phonenumber |address
+1	|Nithin  |Male    |6000000	|3000000	|25000      |300000      |75000      |500000	|devops                |2022-08-22	|123         |mumbai
+2	|Stanley |Male    |8000000	|4000000	|10000      |400000      |90000      |700000	|full-stack-developer  |2022-09-11	|321         |mumbai
+3	|Athul   |Male    |7000000	|3500000	|20000      |350000      |80000      |600000	|production            |2022-09-13	|789         |thane
+4	|Simon   |Male    |6000000	|3000000	|25000      |300000      |75000      |500000	|.net developer        |2022-07-21	|567         |mumbai
+5	|Deepthi |Female  |5000000	|2500000	|30000      |250000      |70000      |400000	|full-stack-developer  |2022-01-12	|789         |thane
+6	|Stanley |Male    |600000	|300000     |25000      |300000      |75000      |500000	|sales and marketing   |2022-09-11	|321         |mumbai
+
+22:55:30	insert into employee_department(employee_id, department_id, department) values ("1", "333", "devops"), ("2", "555", "full-stack-developer"), ("3", "888", "production"), ("4", "777", ".net developer"), ("5", "555", "full-stack-developer"), ("6", "111", "sales and marketing")	6 row(s) affected Records: 6  Duplicates: 0  Warnings: 0	0.140 sec
+
+22:55:38	select * from employee_department LIMIT 0, 1000	6 row(s) returned	0.000 sec / 0.000 sec
+employee_id |department_id |department
+1           |333           |devops
+2           |555           |full-stack-developer
+3           |888           |production
+4           |777           |.net developer
+5           |555           |full-stack-developer
+6           |111           |sales and marketing
+
+       //UC5
+22:58:50	select * from employee_payroll where name = "Simon" LIMIT 0, 1000	1 row(s) returned	0.000 sec / 0.000 sec
+id	|name	|gender	|salary  |basic_pay	|deductions |taxable_pay |income_tax |net_pay  |department     |start      |phonenumber |address
+4	|Simon	|Male	|6000000 |3000000	|25000      |300000      |75000      |500000   |.net developer |2022-07-21 |567         |mumbai
+
+23:10:04	select * from employee_payroll where start between cast('2022-08-01' as date)  and date(now()) LIMIT 0, 1000	4 row(s) returned	0.000 sec / 0.000 sec
+id	|name    |gender  |salary	|basic_pay	|deductions |taxable_pay |income_tax |net_pay	|department            |start       |phonenumber |address
+1	|Nithin  |Male    |6000000	|3000000	|25000      |300000      |75000      |500000	|devops                |2022-08-22	|123         |mumbai
+2	|Stanley |Male    |8000000	|4000000	|10000      |400000      |90000      |700000	|full-stack-developer  |2022-09-11	|321         |mumbai
+3	|Athul   |Male    |7000000	|3500000	|20000      |350000      |80000      |600000	|production            |2022-09-13	|789         |thane
+6	|Stanley |Male    |600000	|300000     |25000      |300000      |75000      |500000	|sales and marketing   |2022-09-11	|321         |mumbai
+
+       //UC7
+23:12:48	select sum(salary) from employee_payroll where gender = "Male" group by gender LIMIT 0, 1000	1 row(s) returned	0.000 sec / 0.000 sec
+sum(salary)
+27600000
+
+23:13:41	select avg(salary) from employee_payroll where gender = "Male" group by gender LIMIT 0, 1000	1 row(s) returned	0.000 sec / 0.000 sec
+avg(salary)
+5520000
+
+23:14:04	select min(salary) from employee_payroll where gender = "Male" group by gender LIMIT 0, 1000	1 row(s) returned	0.015 sec / 0.000 sec
+min(salary)
+600000
+
+23:14:31	select max(salary) from employee_payroll where gender = "Male" group by gender LIMIT 0, 1000	1 row(s) returned	0.000 sec / 0.000 sec
+max(salary)
+8000000
+
+23:14:59	select count(id) from employee_payroll where gender = "Male" group by gender LIMIT 0, 1000	1 row(s) returned	0.000 sec / 0.000 sec
+count(id)
+5
+
+23:15:34	select count(id) from employee_payroll where gender = "Female" group by gender LIMIT 0, 1000	1 row(s) returned	0.000 sec / 0.000 sec
+count(id)
+1
