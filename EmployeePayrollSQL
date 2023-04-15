@@ -176,3 +176,52 @@ id	|name     |gender    |salary	|department             |start        |phonenumb
 3	|Athul    |Male      |7000000	|production             |2022-09-13   |789           |thane
 4	|Simon    |Male      |6000000	|.net developer         |2022-07-21   |567           |mumbai
 5	|Deepthi  |Female    |5000000	|full-stack-developer   |2022-01-12   |789           |thane
+
+
+#UC9: Ability to extend employee_payroll table to have Basic Pay, Deductions, Taxable Pay, Income Tax, Net Pay
+SQL QUERY: alter table employee_payroll add basic_pay int after salary;
+           alter table employee_payroll add deductions int after basic_pay;
+           alter table employee_payroll add taxable_pay int after deductions;
+           alter table employee_payroll add income_tax int after taxable_pay;
+           alter table employee_payroll add net_pay int after income_tax;
+
+           update employee_payroll set basic_pay = 3000000.0 , deductions = 25000.0, taxable_pay = 300000.0, income_tax = 75000.0 , net_pay = 500000.0
+           where id = 1;
+           update employee_payroll set basic_pay = 4000000.0 , deductions = 10000.0, taxable_pay = 400000.0, income_tax = 90000.0 , net_pay = 700000.0
+           where id = 2;
+           update employee_payroll set basic_pay = 3500000.0 , deductions = 20000.0, taxable_pay = 350000.0, income_tax = 80000.0 , net_pay = 600000.0
+           where id = 3;
+           update employee_payroll set basic_pay = 3000000.0 , deductions = 25000.0, taxable_pay = 300000.0, income_tax = 75000.0 , net_pay = 500000.0
+           where id = 4;
+           update employee_payroll set basic_pay = 2500000.0 , deductions = 30000.0, taxable_pay = 250000.0, income_tax = 70000.0 , net_pay = 400000.0
+           where id = 5;
+
+           select * from employee_payroll;
+OUTPUT:
+21:04:13	alter table employee_payroll add basic_pay int after salary	0 row(s) affected Records: 0  Duplicates: 0  Warnings: 0	0.344 sec
+
+21:04:24	alter table employee_payroll add deductions int after basic_pay	0 row(s) affected Records: 0  Duplicates: 0  Warnings: 0	0.187 sec
+
+21:04:29	alter table employee_payroll add taxable_pay int after deductions	0 row(s) affected Records: 0  Duplicates: 0  Warnings: 0	0.234 sec
+
+21:04:34	alter table employee_payroll add income_tax int after taxable_pay	0 row(s) affected Records: 0  Duplicates: 0  Warnings: 0	0.062 sec
+
+21:04:39	alter table employee_payroll add net_pay int after income_tax	0 row(s) affected Records: 0  Duplicates: 0  Warnings: 0	0.204 sec
+
+21:04:45	update employee_payroll set basic_pay = 3000000.0 , deductions = 25000.0, taxable_pay = 300000.0, income_tax = 75000.0 , net_pay = 500000.0 where id = 1	1 row(s) affected Rows matched: 1  Changed: 1  Warnings: 0	0.047 sec
+
+21:04:49	update employee_payroll set basic_pay = 4000000.0 , deductions = 10000.0, taxable_pay = 400000.0, income_tax = 90000.0 , net_pay = 700000.0 where id = 2	1 row(s) affected Rows matched: 1  Changed: 1  Warnings: 0	0.046 sec
+
+21:04:53	update employee_payroll set basic_pay = 3500000.0 , deductions = 20000.0, taxable_pay = 350000.0, income_tax = 80000.0 , net_pay = 600000.0 where id = 3	1 row(s) affected Rows matched: 1  Changed: 1  Warnings: 0	0.046 sec
+
+21:04:57	update employee_payroll set basic_pay = 3000000.0 , deductions = 25000.0, taxable_pay = 300000.0, income_tax = 75000.0 , net_pay = 500000.0 where id = 4	1 row(s) affected Rows matched: 1  Changed: 1  Warnings: 0	0.110 sec
+
+21:05:03	update employee_payroll set basic_pay = 2500000.0 , deductions = 30000.0, taxable_pay = 250000.0, income_tax = 70000.0 , net_pay = 400000.0 where id = 5	1 row(s) affected Rows matched: 1  Changed: 1  Warnings: 0	0.047 sec
+
+21:05:54	select * from employee_payroll LIMIT 0, 1000	5 row(s) returned	0.000 sec / 0.000 sec
+id	|name    |gender  |salary	|basic_pay	|deductions |taxable_pay |income_tax |net_pay	|department            |start       |phonenumber |address
+1	|Nithin  |Male    |6000000	|3000000	|25000      |300000      |75000      |500000	|devops                |2022-08-22	|123         |mumbai
+2	|Stanley |Male    |8000000	|4000000	|10000      |400000      |90000      |700000	|full-stack-developer  |2022-09-11	|321         |mumbai
+3	|Athul   |Male    |7000000	|3500000	|20000      |350000      |80000      |600000	|production            |2022-09-13	|789         |thane
+4	|Simon   |Male    |6000000	|3000000	|25000      |300000      |75000      |500000	|.net developer        |2022-07-21	|567         |mumbai
+5	|Deepthi |Female  |5000000	|2500000	|30000      |250000      |70000      |400000	|full-stack-developer  |2022-01-12	|789         |thane
