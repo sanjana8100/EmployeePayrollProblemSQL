@@ -89,3 +89,47 @@ id	|name      |gender   |salary	|start
 3	|Athul     |Male     |7000000	|2022-09-13
 4	|Simon     |Male     |6000000	|2022-07-21
 5	|Deepthi   |Female   |5000000	|2022-01-12
+
+
+#UC7: Ability to find sum, average, min, max and number of male and female employees
+SQL QUERY: select sum(salary) from employee_payroll
+           where gender = "Male" group by gender;
+
+           select avg(salary) from employee_payroll
+           where gender = "Male" group by gender;
+
+           select min(salary) from employee_payroll
+           where gender = "Male" group by gender;
+
+           select max(salary) from employee_payroll
+           where gender = "Male" group by gender;
+
+           select count(id) from employee_payroll
+           where gender = "Male" group by gender;
+
+           select count(id) from employee_payroll
+           where gender = "Female" group by gender;
+OUTPUT:
+19:34:13	select sum(salary) from employee_payroll where gender = "Male" group by gender LIMIT 0, 1000	1 row(s) returned	0.062 sec / 0.000 sec
+sum(salary)
+27000000
+
+19:34:42	select avg(salary) from employee_payroll where gender = "Male" group by gender LIMIT 0, 1000	1 row(s) returned	0.016 sec / 0.000 sec
+avg(salary)
+6750000
+
+19:35:08	select min(salary) from employee_payroll where gender = "Male" group by gender LIMIT 0, 1000	1 row(s) returned	0.031 sec / 0.000 sec
+min(salary)
+6000000
+
+19:35:41	select max(salary) from employee_payroll where gender = "Male" group by gender LIMIT 0, 1000	1 row(s) returned	0.000 sec / 0.000 sec
+max(salary)
+8000000
+
+19:36:15	select count(id) from employee_payroll where gender = "Male" group by gender LIMIT 0, 1000	1 row(s) returned	0.000 sec / 0.000 sec
+count(id)
+4
+
+19:36:39	select count(id) from employee_payroll where gender = "Female" group by gender LIMIT 0, 1000	1 row(s) returned	0.000 sec / 0.000 sec
+count(id)
+1
