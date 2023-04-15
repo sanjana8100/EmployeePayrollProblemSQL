@@ -1,0 +1,7 @@
+#UC1: Ability to create a payroll service database
+SQL QUERY: create database payroll_service;
+           use payroll_service;
+OUTPUT:
+18:52:01	create database payroll_service	1 row(s) affected	0.484 sec
+
+18:52:08	use payroll_service	0 row(s) affected	0.000 sec
