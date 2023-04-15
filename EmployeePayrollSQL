@@ -246,3 +246,14 @@ id	|name    |gender  |salary	|basic_pay	|deductions |taxable_pay |income_tax |ne
 
 #UC10: Draw the ER Diagram for Payroll Service DB
 OUTPUT: Refer EmployeePayrollERDiagram.png
+
+
+#UC11: Implement the ER Diagram into Payroll Service DB
+SQL QUERY: create table employee_department(
+           employee_id int not null,
+           department_id int
+           );
+OUTPUT:
+21:58:51	create table employee_department( employee_id int not null, department_id int )	0 row(s) affected	0.266 sec
+
+For Updated ER Diagram: Refer EmployeePayrollERDiagramUpdated.png
