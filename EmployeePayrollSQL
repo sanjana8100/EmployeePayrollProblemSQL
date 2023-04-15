@@ -56,3 +56,36 @@ id	|name    |salary	|start
 1	|Nithin  |6000000	|2022-08-22
 2	|Stanley |8000000	|2022-09-11
 3	|Athul   |7000000	|2022-09-13
+
+
+#UC6: Ability to add Gender to Employee Payroll Table and Update the Rows to reflect the correct Employee Gender
+SQL QUERY: insert into employee_payroll(name,salary,start) values
+           ("Deepthi",5000000.0,'2022-01-12');
+
+           alter table employee_payroll add gender varchar(10) after name;
+
+           update employee_payroll
+           set gender = "Male"
+           where id < 5;
+
+           update employee_payroll
+           set gender = "Female"
+           where id = 5;
+
+           select * from employee_payroll;
+OUTPUT:
+19:20:45	insert into employee_payroll(name,salary,start) values ("Deepthi",5000000.0,'2022-01-12')	1 row(s) affected	0.109 sec
+
+19:20:53	alter table employee_payroll add gender varchar(10) after name	0 row(s) affected Records: 0  Duplicates: 0  Warnings: 0	0.188 sec
+
+19:20:57	update employee_payroll set gender = "Male" where id < 5	4 row(s) affected Rows matched: 4  Changed: 4  Warnings: 0	0.078 sec
+
+19:21:00	update employee_payroll set gender = "Female" where id = 5	1 row(s) affected Rows matched: 1  Changed: 1  Warnings: 0	0.157 sec
+
+19:22:02	select * from employee_payroll LIMIT 0, 1000	5 row(s) returned	0.000 sec / 0.000 sec
+id	|name      |gender   |salary	|start
+1	|Nithin    |Male     |6000000	|2022-08-22
+2	|Stanley   |Male     |8000000	|2022-09-11
+3	|Athul     |Male     |7000000	|2022-09-13
+4	|Simon     |Male     |6000000	|2022-07-21
+5	|Deepthi   |Female   |5000000	|2022-01-12
