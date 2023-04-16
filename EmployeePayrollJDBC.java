@@ -25,15 +25,27 @@ public class EmployeePayrollJDBC {
             connection = DriverManager.getConnection(DB_URL,USER,PASS);
             System.out.println("Connection is successful!!!! "+connection);
 
-            Statement statement = connection.createStatement();
+            Statement statement1 = connection.createStatement();
+            Statement statement2 = connection.createStatement();
 
-            ResultSet resultSet = statement.executeQuery("select * from employee_payroll");
+            int count = statement1.executeUpdate("update employee_payroll set basic_pay = \"3000000.0\" where id =2;");
+            System.out.println(count);
 
+            ResultSet resultSet = statement2.executeQuery("select * from employee_payroll");
             while (resultSet.next()) {
                 System.out.print("ID: " + resultSet.getInt("id"));
                 System.out.print(", Name: " + resultSet.getString("name"));
+                System.out.print(", Gender: " + resultSet.getString("gender"));
                 System.out.print(", Salary: " + resultSet.getDouble("salary"));
-                System.out.print(", Date: " + resultSet.getDate("start"));
+                System.out.print(", Basic Pay: " + resultSet.getString("basic_pay"));
+                System.out.print(", Deductions: " + resultSet.getString("deductions"));
+                System.out.print(", Taxable Pay: " + resultSet.getString("taxable_pay"));
+                System.out.print(", Income Tax: " + resultSet.getString("income_tax"));
+                System.out.print(", Net Pay: " + resultSet.getString("net_pay"));
+                System.out.print(", Department: " + resultSet.getString("department"));
+                System.out.print(", Start Date: " + resultSet.getDate("start"));
+                System.out.print(", Phone Number: " + resultSet.getString("phonenumber"));
+                System.out.print(", Address: " + resultSet.getString("address"));
                 System.out.println();
             }
         } catch (SQLException e) {
