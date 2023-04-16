@@ -1,8 +1,6 @@
 package com.bridgelabz.EmployeePayrollProblem;
 
-import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.DriverManager;
+import java.sql.*;
 import java.util.Enumeration;
 
 public class EmployeePayrollJDBC {
@@ -11,10 +9,11 @@ public class EmployeePayrollJDBC {
     static final String PASS = "Admin";
 
     public static void main(String[] args) {
-        Connection con;
+        Connection connection;
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Driver Loaded!");
+            System.out.print("Driver Loaded!");
         } catch (ClassNotFoundException e){
             throw new IllegalStateException("Cannot find the driver in the classpath!",e);
         }
@@ -23,10 +22,22 @@ public class EmployeePayrollJDBC {
 
         try {
             System.out.println("Connecting to database: "+DB_URL);
-            con = DriverManager.getConnection(DB_URL,USER,PASS);
-            System.out.println("Connection is successful!!!! "+con);
-        } catch (Exception e) {
-            e.printStackTrace();
+            connection = DriverManager.getConnection(DB_URL,USER,PASS);
+            System.out.println("Connection is successful!!!! "+connection);
+
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery("select * from employee_payroll");
+
+            while (resultSet.next()) {
+                System.out.print("ID: " + resultSet.getInt("id"));
+                System.out.print(", Name: " + resultSet.getString("name"));
+                System.out.print(", Salary: " + resultSet.getDouble("salary"));
+                System.out.print(", Date: " + resultSet.getDate("start"));
+                System.out.println();
+            }
+        } catch (SQLException e) {
+            System.out.println("Catch");
         }
     }
 
